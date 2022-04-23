@@ -1,5 +1,8 @@
-﻿namespace Checkers.Core;
+﻿using System.Diagnostics;
 
+namespace Checkers.Core;
+
+[DebuggerDisplay("{Position.X}, {Position.Y} ------ {Color} ------ {UnderAttackCheckers.Count}")]
 public class Checker
 {
     public bool IsKing { get; set; } = false;
@@ -10,7 +13,7 @@ public class Checker
 
     public List<Position> Moves { get; internal set; } = new();
 
-    public List<Checker> UnderAttackCheckers { get; internal set; } = new();
+    public Dictionary<Checker, List<Position>> UnderAttackCheckers { get; internal set; } = new();
 
     public Checker(Position position, Color color)
     {
